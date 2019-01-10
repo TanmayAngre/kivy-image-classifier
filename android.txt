@@ -1,0 +1,3 @@
+title = ImageClassifier
+author = tanmay
+orientation = potrait
