@@ -4,6 +4,7 @@
 	height: self.texture_size[1] + self.texture_size[1]/2
 	markup: True
 
+
 <KivyRoot>:
 	orientation: "vertical"
 
@@ -23,6 +24,28 @@
 			name: 'start_screen'
 		AboutScreen: 
 			name: 'about_screen'
+		DuplicateScreen:
+			id: dupp
+			name: 'dup_screen'
+		MyImageScreen:
+			name: 'myimage'
+			id: myimage
+		TextImageScreen:
+			id: text
+			name: 'screen'
+		TextOne:
+			name: 'textone'
+			id: textone
+		TextTwo:
+			name: 'texttwo'
+			id: texttwo
+		TextThree:
+			name: 'textthree'
+			id: textthree
+
+
+
+
 
 <StartScreen@Screen>:
 	BoxLayout:
@@ -35,15 +58,34 @@
 			font_size: self.width/10
 			
 		Button:
-			text: 'Duplicate Images'
+			text: 'DuplicateImages'
+			on_release: app.root.changeScreen(self.text.lower())
 
 		Button:
-			text: 'Text and Known Images'
+			text: 'TextImages'
+			on_release: app.root.changeScreen(self.text.lower())
 
 		Button:
 			text: 'About'
 			on_release: app.root.changeScreen(self.text.lower())	
 
+
+<TextImageScreen>:
+	BoxLayout:
+		orientation: 'vertical'
+		padding: root.width*0.2, root.height*0.2
+		spacing: min(root.width, root.height)*0.2
+		Button:
+			text: 'PlainQuote'
+			on_release: app.root.changeScreen(self.text.lower())
+
+		Button:
+			text: 'PersonalityQuote'
+			on_release: app.root.changeScreen(self.text.lower())
+
+		Button:
+			text: 'ScannedDoc'
+			on_release: app.root.changeScreen(self.text.lower())
 
 <AboutScreen@Screen>:
 	BoxLayout:
@@ -59,3 +101,19 @@
 		font_size: root.height/20
 		text_size: self.width, None
 		markup: True
+
+<Image_Thumb>
+
+<MyImage>:
+	on_touch_down: app.root.changeScreen('myimage')
+	
+<CarouselO>:
+	Button:
+		id: btn
+		text:'Delete'
+	    font_size: 28
+		size_hint: 0.9, 0.1
+		pos_hint: {'top':1} 
+		on_press: root.onPress()
+
+	
