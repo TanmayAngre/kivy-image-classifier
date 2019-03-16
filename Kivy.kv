@@ -1,0 +1,119 @@
+
+<WrappedLabel@Label>:
+	size_hint_y: None
+	height: self.texture_size[1] + self.texture_size[1]/2
+	markup: True
+
+
+<KivyRoot>:
+	orientation: "vertical"
+
+	ActionBar: 
+		ActionView:
+			ActionPrevious:
+				title: "Image Classifier"
+				with_previous: False
+			ActionOverflow: 
+				ActionButton: 
+					text: "Settings"
+					on_press: app.open_settings()
+
+	ScreenManager:
+		id: screen_manager
+		StartScreen: 
+			name: 'start_screen'
+		AboutScreen: 
+			name: 'about_screen'
+		DuplicateScreen:
+			id: dupp
+			name: 'dup_screen'
+		MyImageScreen:
+			name: 'myimage'
+			id: myimage
+		TextImageScreen:
+			id: text
+			name: 'screen'
+		TextOne:
+			name: 'textone'
+			id: textone
+		TextTwo:
+			name: 'texttwo'
+			id: texttwo
+		TextThree:
+			name: 'textthree'
+			id: textthree
+
+
+
+
+
+<StartScreen@Screen>:
+	BoxLayout:
+		orientation: 'vertical'
+		padding: root.width*0.2, root.height*0.2
+		spacing: min(root.width, root.height)*0.2
+
+		WrappedLabel:
+			text: '[b]Select one of the options...[/b]'
+			font_size: self.width/10
+			
+		Button:
+			text: 'DuplicateImages'
+			on_release: app.root.changeScreen(self.text.lower())
+
+		Button:
+			text: 'TextImages'
+			on_release: app.root.changeScreen(self.text.lower())
+
+		Button:
+			text: 'About'
+			on_release: app.root.changeScreen(self.text.lower())	
+
+
+<TextImageScreen>:
+	BoxLayout:
+		orientation: 'vertical'
+		padding: root.width*0.2, root.height*0.2
+		spacing: min(root.width, root.height)*0.2
+		Button:
+			text: 'PlainQuote'
+			on_release: app.root.changeScreen(self.text.lower())
+
+		Button:
+			text: 'PersonalityQuote'
+			on_release: app.root.changeScreen(self.text.lower())
+
+		Button:
+			text: 'ScannedDoc'
+			on_release: app.root.changeScreen(self.text.lower())
+
+<AboutScreen@Screen>:
+	BoxLayout:
+		orientation: 'vertical'
+		padding: root.width*0.2, root.height*0.2
+		spacing: min(root.width, root.height)*0.2
+
+	Label:
+		halign: 'center'
+		center_y: 0.5
+		text: app.getText()
+		on_ref_press: app.on_ref_press(*args)
+		font_size: root.height/20
+		text_size: self.width, None
+		markup: True
+
+<Image_Thumb>
+
+<MyImage>:
+	on_touch_down: app.root.changeScreen('myimage')
+	
+<CarouselO>:
+	Button:
+		id: btn
+		text:'Delete'
+	    font_size: 28
+		size_hint: 0.9, 0.1
+		pos_hint: {'top':1} 
+		on_press: root.onPress()
+
+	
